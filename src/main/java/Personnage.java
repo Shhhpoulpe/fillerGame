@@ -1,7 +1,4 @@
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.List;
-
 public class Personnage extends Init {
 
     private int positionX;
@@ -10,7 +7,6 @@ public class Personnage extends Init {
 
     public Personnage(int positionX, int positionY) {
         super(positionX, positionY);
-
         initPerso();
     }
 
@@ -64,7 +60,6 @@ public class Personnage extends Init {
 
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
-        // set un changement de valeur sur l'apuie d'une touche de direction en lien directe avec la manière de bouger en x et y
         if (key == KeyEvent.VK_LEFT) {
             System.out.println("left");
             while(tab[positionY][positionX-1] != 1){
