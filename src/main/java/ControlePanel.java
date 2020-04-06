@@ -1,10 +1,4 @@
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Rectangle;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -17,8 +11,11 @@ import javax.swing.Timer;
 public class ControlePanel extends JPanel implements ActionListener{
 
     private boolean ingame;
-    private final int B_WIDTH = 400;
-    private final int B_HEIGHT = 300;
+    private final int B_WIDTH = 700;
+    private final int B_HEIGHT = 600;
+    private final int caseWidth = 70;
+    private final int caseHeight = 60;
+    int tab[][];
 
     public ControlePanel() {
 
@@ -29,7 +26,7 @@ public class ControlePanel extends JPanel implements ActionListener{
 
         addKeyListener(new TAdapter());
         setFocusable(true);
-        setBackground(Color.BLACK);
+        setBackground(Color.gray);
         ingame = true;
 
         setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
@@ -54,8 +51,16 @@ public class ControlePanel extends JPanel implements ActionListener{
     }
 
     private void drawObjects(Graphics g) {
-
+        
+       // 1 = mur (rouge) / 2 = case visité (bleu) / 3 = case non visité (grey) / 4 =  joueur (violet)
+       // cadrillage 10 par 10
+       for(int i=0; i<10;i++){
+           for(int j=0; j<10;j++){
+               g.fillRect(caseWidth*i, caseHeight*j, caseWidth, caseHeight);
+           }
+       }
        
+
     }
 
     private void drawGameOver(Graphics g) {
@@ -73,7 +78,7 @@ public class ControlePanel extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        // inGame();
+        inGame();
         // updateShip();
         // updateMissiles();
         // updateInvader();
@@ -95,6 +100,4 @@ public class ControlePanel extends JPanel implements ActionListener{
             // a voir jsplus comment ça marche
         }
     }
-
-
 }
