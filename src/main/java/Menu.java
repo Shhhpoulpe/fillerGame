@@ -15,8 +15,8 @@ public class Menu extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // termine le programme quand l'utilisateur ferme la fenetre
     }
 
+
     public static void main(String[] args) {
-        
             Menu myGame = new Menu();
             myGame.setVisible(true); // permet à la fenetre d'etre visible pour l'utilisateur
     }
