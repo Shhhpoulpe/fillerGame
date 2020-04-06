@@ -3,8 +3,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -34,7 +32,6 @@ public class ControlePanel extends JPanel implements ActionListener{
         setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
 
         personnage = new Personnage(10,10);
-        
 
         timer = new Timer(DELAY, this);
         timer.start();
@@ -57,9 +54,6 @@ public class ControlePanel extends JPanel implements ActionListener{
     }
 
     private void drawObjects(Graphics g) {
-        
-       // 1 = mur (rouge) / 2 = case non visité (grey)) / 3 = case visité (bleu / 4 =  joueur (violet)
-       // cadrillage 10 par 10
 
         tab = personnage.getTab();
        for(int y=0; y<tab.length;y++){
