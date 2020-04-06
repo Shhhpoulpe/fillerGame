@@ -11,6 +11,7 @@ import javax.swing.Timer;
 public class ControlePanel extends JPanel implements ActionListener{
 
     private boolean ingame;
+    private Personnage personnage;
     private final int B_WIDTH = 700;
     private final int B_HEIGHT = 600;
     private final int caseWidth = 70;
@@ -30,6 +31,8 @@ public class ControlePanel extends JPanel implements ActionListener{
         ingame = true;
 
         setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
+
+        personnage = new Personnage(10,10);
 
         // initialisé les mouvements
 
@@ -52,10 +55,25 @@ public class ControlePanel extends JPanel implements ActionListener{
 
     private void drawObjects(Graphics g) {
         
-       // 1 = mur (rouge) / 2 = case visité (bleu) / 3 = case non visité (grey) / 4 =  joueur (violet)
+       // 1 = mur (rouge) / 2 = case non visité (grey)) / 3 = case visité (bleu / 4 =  joueur (violet)
        // cadrillage 10 par 10
+
+        //   personnage.setTab(tab);
+        // tab =personnage.newTable();
+        tab = personnage.getTab();
        for(int i=0; i<10;i++){
            for(int j=0; j<10;j++){
+               switch (tab[i][j]){
+                   case 1 : g.setColor(Color.red);
+                   break;
+                   case 2 : g.setColor(Color.gray);
+                   break;
+                   case 3 : g.setColor(Color.blue);
+                   break;
+                   case 4 : g.setColor(Color.pink);
+                   break;
+                //    default : Trow new exeption("ERREUR");
+               }
                g.fillRect(caseWidth*i, caseHeight*j, caseWidth, caseHeight);
            }
        }
@@ -83,7 +101,13 @@ public class ControlePanel extends JPanel implements ActionListener{
         // updateMissiles();
         // updateInvader();
         // chekChoc();
-        // repaint();
+        repaint();
+    }
+
+    private void updatePersonnage() {
+        if (personnage.isVisible()) {
+            // personnage.move();
+        }
     }
     private void inGame() {
         if (!ingame) {
@@ -93,11 +117,11 @@ public class ControlePanel extends JPanel implements ActionListener{
     private class TAdapter extends KeyAdapter {
         @Override
         public void keyReleased(KeyEvent e) {
-            // a voir jsplus comment ça marche
+            // personnage.keyReleased(e);
         }
         @Override
         public void keyPressed(KeyEvent e) {
-            // a voir jsplus comment ça marche
+            // personnage.keyPressed(e);
         }
     }
 }

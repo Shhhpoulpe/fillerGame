@@ -1,5 +1,3 @@
-package main.java;
-
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,20 +29,29 @@ public class Personnage extends Init {
         return tab;
     }
 
-    private void initPerso() {
+    public void initPerso() {
         loadImage("src/ressources/vaisseau.png"); //charge l'image depuis les ressources
         getImageDimensions(); // récupère les dimensions de l'image
         tab = newTable();
 
         for(int y=0;y <= tab.length - 1;y++){
             for(int x=0;x <= tab[y].length - 1;x++){
-                if(tab[y][x] = 4){
+                if(tab[y][x] == 4){
                     positionX = x;
                     positionY = y;
                     break;
                 }
             }
         }
+        
+    }
+    
+    public void setTab(int[][] tab){
+        this.tab = tab;
+    }
+
+    public int[][] getTab(){
+        return tab;
     }
 
     public void keyPressed(KeyEvent e) {
