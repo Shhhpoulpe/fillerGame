@@ -15,23 +15,31 @@ public class Personnage extends Init {
     }
 
     public static int[][] newTable() {
-        int tab[][] = {{1,1,1,1,1,1,1,1,1,1},
-                {1,4,2,2,2,2,2,2,2,1},
-                {1,2,1,1,1,1,1,1,2,1},
-                {1,2,1,1,1,1,1,1,2,1},
-                {1,2,1,1,1,1,1,1,2,1},
-                {1,2,1,1,1,1,1,1,2,1},
-                {1,2,1,1,1,1,1,1,2,1},
-                {1,2,1,1,1,1,1,1,2,1},
-                {1,2,2,2,2,2,2,2,2,1},
-                {1,1,1,1,1,1,1,1,1,1}};
+        int tab[][] = {{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                       {1,4,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1},
+                       {1,2,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1},
+                       {1,2,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1},
+                       {1,2,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1},
+                       {1,2,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1},
+                       {1,2,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1},
+                       {1,2,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1},
+                       {1,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1},
+                       {1,2,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1},
+                       {1,2,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1},
+                       {1,2,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1},
+                       {1,2,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1},
+                       {1,2,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1},
+                       {1,2,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1},
+                       {1,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1},
+                       {1,2,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1},
+                       {1,2,1,1,1,1,1,1,2,1,1,1,1,1,1,1,1,1,1,1},
+                       {1,2,1,1,1,1,2,2,2,1,1,1,1,1,1,1,1,1,1,1},
+                       {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}};
 
         return tab;
     }
 
     public void initPerso() {
-        loadImage("src/ressources/vaisseau.png"); //charge l'image depuis les ressources
-        getImageDimensions(); // récupère les dimensions de l'image
         tab = newTable();
 
         for(int y=0;y <= tab.length - 1;y++){
@@ -55,14 +63,13 @@ public class Personnage extends Init {
     }
 
     public void keyPressed(KeyEvent e) {
-
         int key = e.getKeyCode();
         // set un changement de valeur sur l'apuie d'une touche de direction en lien directe avec la manière de bouger en x et y
         if (key == KeyEvent.VK_LEFT) {
             while(tab[positionY][positionX-1] != 1){
                 tab[positionY][positionX] = 3;
                 tab[positionY][positionX-1] = 4;
-                positionY = positionY-1;
+                positionX = positionX-1;
             }
         }
 
@@ -70,7 +77,8 @@ public class Personnage extends Init {
             while(tab[positionY][positionX+1] != 1){
                 tab[positionY][positionX] = 3;
                 tab[positionY][positionX+1] = 4;
-                positionY = positionY+1;
+                positionX = positionX+1;
+
             }
         }
 
@@ -89,11 +97,5 @@ public class Personnage extends Init {
                 positionY = positionY+1;
             }
         }
-    }
-
-    public void keyReleased(KeyEvent e) {
-
-        int key = e.getKeyCode();
-
     }
 }
