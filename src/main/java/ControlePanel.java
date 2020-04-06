@@ -10,13 +10,15 @@ import javax.swing.Timer;
 
 public class ControlePanel extends JPanel implements ActionListener{
 
+    private Timer timer;
     private boolean ingame;
     private Personnage personnage;
     private final int B_WIDTH = 700;
     private final int B_HEIGHT = 600;
-    private final int caseWidth = 70;
-    private final int caseHeight = 60;
+    private final int caseWidth = 35;
+    private final int caseHeight = 30;
     int tab[][];
+    private final int DELAY = 50;
 
     public ControlePanel() {
 
@@ -29,12 +31,13 @@ public class ControlePanel extends JPanel implements ActionListener{
         setFocusable(true);
         setBackground(Color.gray);
         ingame = true;
-
         setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
 
         personnage = new Personnage(10,10);
+        
 
-        // initialisé les mouvements
+        timer = new Timer(DELAY, this);
+        timer.start();
 
     }
     @Override
@@ -58,12 +61,10 @@ public class ControlePanel extends JPanel implements ActionListener{
        // 1 = mur (rouge) / 2 = case non visité (grey)) / 3 = case visité (bleu / 4 =  joueur (violet)
        // cadrillage 10 par 10
 
-        //   personnage.setTab(tab);
-        // tab =personnage.newTable();
         tab = personnage.getTab();
-       for(int i=0; i<10;i++){
-           for(int j=0; j<10;j++){
-               switch (tab[i][j]){
+       for(int y=0; y<tab.length;y++){
+           for(int x=0; x<tab[y].length;x++){
+               switch (tab[x][y]){
                    case 1 : g.setColor(Color.red);
                    break;
                    case 2 : g.setColor(Color.gray);
@@ -74,11 +75,9 @@ public class ControlePanel extends JPanel implements ActionListener{
                    break;
                 //    default : Trow new exeption("ERREUR");
                }
-               g.fillRect(caseWidth*i, caseHeight*j, caseWidth, caseHeight);
+               g.fillRect(caseWidth*y, caseHeight*x, caseWidth, caseHeight);
            }
        }
-       
-
     }
 
     private void drawGameOver(Graphics g) {
@@ -97,31 +96,18 @@ public class ControlePanel extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e) {
 
         inGame();
-        // updateShip();
-        // updateMissiles();
-        // updateInvader();
-        // chekChoc();
         repaint();
     }
 
-    private void updatePersonnage() {
-        if (personnage.isVisible()) {
-            // personnage.move();
-        }
-    }
     private void inGame() {
         if (!ingame) {
-            // action définissant la fin du jeu
+            timer.stop();
         }
     }
     private class TAdapter extends KeyAdapter {
         @Override
-        public void keyReleased(KeyEvent e) {
-            // personnage.keyReleased(e);
-        }
-        @Override
         public void keyPressed(KeyEvent e) {
-            // personnage.keyPressed(e);
+            personnage.keyPressed(e);
         }
     }
 }
