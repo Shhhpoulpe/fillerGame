@@ -1,3 +1,5 @@
+package com.company;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,7 +42,7 @@ public class ControlePanel extends JPanel implements ActionListener{
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        
+
         if (ingame) {
 
             drawObjects(g);
@@ -50,28 +52,32 @@ public class ControlePanel extends JPanel implements ActionListener{
             drawGameOver(g);
         }
 
+        if(personnage.getVictory()){
+            drawVictory(g);
+        }
+
         Toolkit.getDefaultToolkit().sync();
     }
 
     private void drawObjects(Graphics g) {
 
         tab = personnage.getTab();
-       for(int y=0; y<tab.length;y++){
-           for(int x=0; x<tab[y].length;x++){
-               switch (tab[x][y]){
-                   case 1 : g.setColor(Color.red);
-                   break;
-                   case 2 : g.setColor(Color.gray);
-                   break;
-                   case 3 : g.setColor(Color.blue);
-                   break;
-                   case 4 : g.setColor(Color.pink);
-                   break;
-                //    default : Trow new exeption("ERREUR");
-               }
-               g.fillRect(caseWidth*y, caseHeight*x, caseWidth, caseHeight);
-           }
-       }
+        for(int y=0; y<tab.length;y++){
+            for(int x=0; x<tab[y].length;x++){
+                switch (tab[x][y]){
+                    case 1 : g.setColor(Color.red);
+                        break;
+                    case 2 : g.setColor(Color.gray);
+                        break;
+                    case 3 : g.setColor(Color.blue);
+                        break;
+                    case 4 : g.setColor(Color.pink);
+                        break;
+                    //    default : Trow new exeption("ERREUR");
+                }
+                g.fillRect(caseWidth*y, caseHeight*x, caseWidth, caseHeight);
+            }
+        }
     }
 
     private void drawGameOver(Graphics g) {
@@ -86,11 +92,25 @@ public class ControlePanel extends JPanel implements ActionListener{
                 B_HEIGHT / 2);
     }
 
+    private void drawVictory(Graphics g) {
+
+        String msg = "Victory";
+        Font small = new Font("Helvetica", Font.BOLD, 14);
+        FontMetrics fm = getFontMetrics(small);
+
+        g.setColor(Color.white);
+        g.setFont(small);
+        g.drawString(msg, (B_WIDTH - fm.stringWidth(msg)) / 2,
+                B_HEIGHT / 2);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
         inGame();
         repaint();
+
+
     }
 
     private void inGame() {
