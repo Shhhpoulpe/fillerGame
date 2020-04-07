@@ -81,7 +81,7 @@ public class ControlePanel extends JPanel implements ActionListener{
         Font small = new Font("Helvetica", Font.BOLD, 14);
         FontMetrics fm = getFontMetrics(small);
 
-        g.setColor(Color.white);
+        g.setColor(Color.BLACK);
         g.setFont(small);
         g.drawString(msg, (B_WIDTH - fm.stringWidth(msg)) / 2,
                 B_HEIGHT / 2);

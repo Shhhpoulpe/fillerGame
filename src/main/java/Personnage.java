@@ -68,7 +68,6 @@ public class Personnage extends Init {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_LEFT) {
-            System.out.println("left");
             while(tab[positionY][positionX-1] != 1){
                 tab[positionY][positionX] = 3;
                 tab[positionY][positionX-1] = 4;
@@ -77,7 +76,6 @@ public class Personnage extends Init {
         }
 
         if (key == KeyEvent.VK_RIGHT) {
-            System.out.println("right");
             while(tab[positionY][positionX+1] != 1){
                 tab[positionY][positionX] = 3;
                 tab[positionY][positionX+1] = 4;
@@ -87,7 +85,6 @@ public class Personnage extends Init {
         }
 
         if (key == KeyEvent.VK_UP) {
-            System.out.println("up");
             while(tab[positionY-1][positionX] != 1){
                 tab[positionY][positionX] = 3;
                 tab[positionY-1][positionX] = 4;
@@ -96,15 +93,12 @@ public class Personnage extends Init {
         }
 
         if (key == KeyEvent.VK_DOWN) {
-            System.out.println("down");
             while(tab[positionY+1][positionX] != 1){
                 tab[positionY][positionX] = 3;
                 tab[positionY+1][positionX] = 4;
                 positionY = positionY+1;
             }
         }
-        System.out.println("Y : " + positionY);
-        System.out.println("X : " + positionX);
         boolean found = false;
         for(int y=0;y <= tab.length - 1;y++){
             for(int x=0;x <= tab[y].length - 1;x++){
@@ -115,14 +109,6 @@ public class Personnage extends Init {
         }
         if (!found){
             victory=true;
-        }
-
-
-        for(int i=0;i <= tab.length - 1;i++){
-            for(int j=0;j <= tab[i].length - 1;j++){
-                System.out.print(tab[i][j] + " ");
-            }
-            System.out.println();
         }
     }
 }
