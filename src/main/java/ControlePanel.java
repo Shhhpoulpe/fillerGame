@@ -7,12 +7,14 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import javax.swing.ImageIcon;
 
 public class ControlePanel extends JPanel implements ActionListener{
 
     private Timer timer;
     private boolean ingame;
     private Personnage personnage;
+    private Init initImage;
     private final int B_WIDTH = 700;
     private final int B_HEIGHT = 600;
     private final int caseWidth = 35;
@@ -62,22 +64,27 @@ public class ControlePanel extends JPanel implements ActionListener{
     private void drawObjects(Graphics g) {
 
         tab = personnage.getTab();
-        for(int y=0; y<tab.length;y++){
-            for(int x=0; x<tab[y].length;x++){
-                switch (tab[x][y]){
-                    case 1 : g.setColor(Color.red);
-                        break;
-                    case 2 : g.setColor(Color.gray);
-                        break;
-                    case 3 : g.setColor(Color.blue);
-                        break;
-                    case 4 : g.setColor(Color.pink);
-                        break;
-                    //    default : Trow new exeption("ERREUR");
-                }
-                g.fillRect(caseWidth*y, caseHeight*x, caseWidth, caseHeight);
-            }
-        }
+       for(int y=0; y<tab.length;y++){
+           for(int x=0; x<tab[y].length;x++){
+                initImage = new Init(caseWidth*y,caseHeight*x);
+               switch (tab[x][y]){
+                   case 1 : initImage.loadImage("src/ressources/glace2.png");
+                            initImage.getImageDimensions();                     
+                   break;
+                   case 2 : initImage.loadImage("src/ressources/glace.png");
+                            initImage.getImageDimensions(); 
+                   break;
+                   case 3 : initImage.loadImage("src/ressources/eau.jpg");
+                            initImage.getImageDimensions(); 
+                   break;
+                   case 4 : initImage.loadImage("src/ressources/pinguin.png");
+                            initImage.getImageDimensions(); 
+                   break;
+               }
+               
+               g.drawImage(initImage.getImage(), initImage.getX(), initImage.getY(),this);
+           }
+       }
     }
 
     private void drawGameOver(Graphics g) {
