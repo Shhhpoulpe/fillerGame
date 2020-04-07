@@ -1,5 +1,4 @@
 import java.awt.Image;
-import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 
 public class Init {
@@ -8,14 +7,11 @@ public class Init {
     protected int y;
     protected int width;
     protected int height;
-    protected boolean visible;
     protected Image image;
 
     public Init(int x, int y) {
-        // initialisation des coordonnées
         this.x = x;
         this.y = y;
-        visible = true;
     }
 
     protected void getImageDimensions() {
@@ -43,15 +39,4 @@ public class Init {
         return y;
     }
 
-    public boolean isVisible() {
-        return visible;
-    }
-
-    public void setVisible(Boolean visible) {
-        this.visible = visible;
-    }
-
-    public Rectangle getBounds() {
-        return new Rectangle(x, y, width, height);
-    }
 }
