@@ -5,12 +5,10 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import javax.swing.ImageIcon;
 
 public class ControlePanel extends JPanel implements ActionListener{
 
     private Timer timer;
-    private boolean ingame;
     private Personnage personnage;
     private Init initImage;
     private final int B_WIDTH = 700;
@@ -30,7 +28,6 @@ public class ControlePanel extends JPanel implements ActionListener{
         addKeyListener(new TAdapter());
         setFocusable(true);
         setBackground(Color.gray);
-        ingame = true;
         setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
 
         personnage = new Personnage(10,10);
@@ -42,15 +39,8 @@ public class ControlePanel extends JPanel implements ActionListener{
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        
-        if (ingame) {
 
-            drawObjects(g);
-
-        } else {
-
-            drawGameOver(g);
-        }
+        drawObjects(g);
 
         Toolkit.getDefaultToolkit().sync();
     }
@@ -74,36 +64,17 @@ public class ControlePanel extends JPanel implements ActionListener{
                    case 4 : initImage.loadImage("src/ressources/pinguin.png");
                             initImage.getImageDimensions(); 
                    break;
-               }
-               
+               }    
                g.drawImage(initImage.getImage(), initImage.getX(), initImage.getY(),this);
            }
        }
     }
 
-    private void drawGameOver(Graphics g) {
-
-        String msg = "Game Over";
-        Font small = new Font("Helvetica", Font.BOLD, 14);
-        FontMetrics fm = getFontMetrics(small);
-
-        g.setColor(Color.white);
-        g.setFont(small);
-        g.drawString(msg, (B_WIDTH - fm.stringWidth(msg)) / 2,
-                B_HEIGHT / 2);
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        inGame();
         repaint();
-    }
-
-    private void inGame() {
-        if (!ingame) {
-            timer.stop();
-        }
     }
     private class TAdapter extends KeyAdapter {
         @Override
